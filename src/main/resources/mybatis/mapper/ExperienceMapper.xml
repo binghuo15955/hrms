@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.ExperienceMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hrms.entity.Experience">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="employeeNum" jdbcType="VARCHAR"
+			property="employeeNum" />
+		<result column="start_time" jdbcType="DATE"
+			property="start_time" />
+		<result column="end_time" jdbcType="DATE" property="end_time" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="position" jdbcType="VARCHAR"
+			property="position" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+	</resultMap>
+	<resultMap id="experienceMessageMap"
+		type="com.hrms.entity.Experience">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="employeeNum" jdbcType="VARCHAR"
+			property="employeeNum" />
+		<result column="start_time" jdbcType="DATE"
+			property="start_time" />
+		<result column="end_time" jdbcType="DATE" property="end_time" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="position" jdbcType="VARCHAR"
+			property="position" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<association property="messageSet" javaType="Message">
+			<result property="name" column="m_name" />
+			<result property="idnumber" column="m_idnumber" />
+		</association>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, employeeNum, start_time, end_time, company, position,
+		description
+	</sql>
+	<sql id="join_Column_List">
+		emp_experience.id id, emp_experience.employeeNum
+		employeeNum, emp_experience.start_time start_time,
+		emp_experience.end_time end_time, emp_experience.company company,
+		emp_experience.position position,
+		emp_experience.description
+		description
+	</sql>
+	<sql id="emp_message_Column_List">
+		emp_message.name m_name,emp_message.idnumber m_idnumber
+	</sql>
+	<insert id="insertAndgetPK" parameterType="com.hrms.entity.Experience">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into emp_experience
+		(id, employeeNum, start_time,
+		end_time, company, position,
+		description)
+		values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR},
+		#{start_time,jdbcType=DATE},
+		#{end_time,jdbcType=DATE},
+		#{company,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR})
+	</insert>
+	<!-- 获取总数量 -->
+	<select id="getEmployeeExperienceTotal" resultType="Integer">
+		select
+		count(*)
+		from emp_experience
+	</select>
+	<!-- 获取所有员工工作简历&分页 -->
+	<select id="getEmployeeExperiencebyPage"
+		resultMap="experienceMessageMap">
+		select
+		<include refid="join_Column_List" />
+		,
+		<include refid="emp_message_Column_List"></include>
+		from emp_experience left join emp_message
+		on
+		emp_experience.employeeNum=emp_message.employeeNum
+		limit ${page},${limit}
+	</select>
+	<!-- 根据搜索条件获取员工总量 -->
+	<select id="getEmployeeByENISECPTotal" resultType="Integer">
+		select
+		count(*) from emp_experience left join emp_message
+		on
+		emp_experience.employeeNum=emp_message.employeeNum
+		where "1=1"
+		<if test="employeeNum !=null and employeeNum !='' ">and emp_experience.employeeNum LIKE
+			CONCAT('%','${employeeNum}','%')</if>
+		<if test="name !=null and name !='' ">and emp_message.name LIKE CONCAT('%${name}%')</if>
+		<if test="idnumber !=null and idnumber !='' ">and emp_message.idnumber LIKE
+			CONCAT('%','${idnumber}','%') </if>
+		<if test="start_time !=null ">and start_time &gt;${start_time} </if>
+		<if test="end_time !=null ">and end_time &lt; ${end_time} </if>
+		<if test="company !=null and company !='' ">and
+			company LIKE
+			CONCAT('%','${company}','%') </if>
+		<if test="position !=null and position !='' ">and emp_experience.position LIKE
+			CONCAT('%','${position}','%') </if>
+	</select>
+	<!-- 通过搜索工号、开始时间、结束时间、公司名字、职位的搜索结果&分页 -->
+	<select id="selectExperienceByENISECPusePage" parameterType="map"
+		resultMap="experienceMessageMap">
+		select
+		<include refid="join_Column_List" />,<include refid="emp_message_Column_List"></include>
+		from emp_experience left join emp_message
+		on
+		emp_experience.employeeNum=emp_message.employeeNum
+		where "1=1"
+		<if test="employeeNum !=null and employeeNum !='' ">and emp_experience.employeeNum LIKE
+			CONCAT('%','${employeeNum}','%')</if>
+		<if test="name !=null and name !='' ">and emp_message.name LIKE CONCAT('%${name}%')</if>
+		<if test="idnumber !=null and idnumber !='' ">and emp_message.idnumber LIKE
+			CONCAT('%','${idnumber}','%') </if>
+		<if test="start_time !=null ">and start_time &gt;='${start_time}' </if>
+		<if test="end_time !=null ">and end_time &lt;= '${end_time}' </if>
+		<if test="company !=null and company !='' ">and
+			company LIKE
+			CONCAT('%','${company}','%') </if>
+		<if test="position !=null and position !='' ">and emp_experience.position LIKE
+			CONCAT('%','${position}','%') </if>
+			
+			limit ${page},${limit}
+	</select>
+	
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from emp_experience
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from emp_experience
+		where id =
+		#{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hrms.entity.Experience">
+		insert into emp_experience
+		(id, employeeNum, start_time,
+		end_time, company, position,
+		description)
+		values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR},
+		#{start_time,jdbcType=DATE},
+		#{end_time,jdbcType=DATE},
+		#{company,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.hrms.entity.Experience">
+		insert into emp_experience
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="employeeNum != null">
+				employeeNum,
+			</if>
+			<if test="start_time != null">
+				start_time,
+			</if>
+			<if test="end_time != null">
+				end_time,
+			</if>
+			<if test="company != null">
+				company,
+			</if>
+			<if test="position != null">
+				position,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="employeeNum != null">
+				#{employeeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="start_time != null">
+				#{start_time,jdbcType=DATE},
+			</if>
+			<if test="end_time != null">
+				#{end_time,jdbcType=DATE},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.hrms.entity.Experience">
+		update emp_experience
+		<set>
+			<if test="employeeNum != null">
+				employeeNum = #{employeeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="start_time != null">
+				start_time = #{start_time,jdbcType=DATE},
+			</if>
+			<if test="end_time != null">
+				end_time = #{end_time,jdbcType=DATE},
+			</if>
+			<if test="company != null">
+				company = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				position = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.hrms.entity.Experience">
+		update emp_experience
+		set employeeNum =
+		#{employeeNum,jdbcType=VARCHAR},
+		start_time =
+		#{start_time,jdbcType=DATE},
+		end_time = #{end_time,jdbcType=DATE},
+		company = #{company,jdbcType=VARCHAR},
+		position =
+		#{position,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

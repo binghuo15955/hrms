@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.PerformanceMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Performance">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="self_assessment" jdbcType="VARCHAR" property="self_assessment" />
+    <result column="leader_assessment" jdbcType="VARCHAR" property="leader_assessment" />
+    <result column="total" jdbcType="VARCHAR" property="total" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, name, position, date, self_assessment, leader_assessment, total, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from performance_assessment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from performance_assessment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Performance">
+    insert into performance_assessment (id, employeeNum, name, 
+      position, date, self_assessment, 
+      leader_assessment, total, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{self_assessment,jdbcType=VARCHAR}, 
+      #{leader_assessment,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Performance">
+    insert into performance_assessment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="self_assessment != null">
+        self_assessment,
+      </if>
+      <if test="leader_assessment != null">
+        leader_assessment,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="self_assessment != null">
+        #{self_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="leader_assessment != null">
+        #{leader_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Performance">
+    update performance_assessment
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="self_assessment != null">
+        self_assessment = #{self_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="leader_assessment != null">
+        leader_assessment = #{leader_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Performance">
+    update performance_assessment
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      self_assessment = #{self_assessment,jdbcType=VARCHAR},
+      leader_assessment = #{leader_assessment,jdbcType=VARCHAR},
+      total = #{total,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

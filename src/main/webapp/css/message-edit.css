@@ -1,0 +1,57 @@
+div.layui-fluid {
+	background-color: white;
+}
+
+body {
+	background-color: white;
+}
+
+.layui-form-select{
+	width:190px;
+}
+
+#btn {
+	text-align: center;
+    margin-bottom: 200px;
+}
+
+#btn1 {
+	text-align: center;
+}
+
+.layui-btn {
+    color: #FFF;
+    background-color: #409EFF;
+    border-color: #409EFF;
+}
+
+.x-admin-sm .layui-form-pane .layui-form-label {
+    height: 41px;
+    width: 179px;
+    line-height: 24px;
+    font-weight: lighter;
+    font-size: 17px;
+}
+
+.x-admin-sm .layui-input, .x-admin-sm .layui-select, .x-admin-sm .layui-textarea {
+    height: 41px;
+    font-size: larger;
+}	
+
+.layui-btn-danger{
+	 background: #ff8080;
+}	 
+
+.x-admin-sm .layui-btn, .x-admin-sm .layui-btn-xs, .x-admin-sm .layui-btn-sm {
+    font-size: 14px;
+}
+
+.x-admin-sm .layui-btn {
+    height: 39px;
+    width: 180px;
+}
+
+.x-admin-sm .layui-inline .add{
+	width: 75px;
+}
+

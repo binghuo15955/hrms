@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.BankMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Bank">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="openbank" jdbcType="VARCHAR" property="openbank" />
+    <result column="idnumber" jdbcType="VARCHAR" property="idnumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, name, account, openbank, idnumber
+  </sql>
+  	<insert id="insertAndgetPK" parameterType="com.hrms.entity.Bank">
+  		<selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+  			SELECT LAST_INSERT_ID()
+  		</selectKey>
+    insert into emp_bank (id, employeeNum, name, 
+      account, openbank, idnumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{openbank,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}
+      )
+  	</insert>
+  	<!-- 获取总数量 -->
+	<select id="getEmployeeBankTotal" resultType="Integer">
+		select count(*) from emp_bank
+	</select>
+	<!-- 获取所有员工银行卡信息 分页 -->
+	<select id="getEmployeeBankbyPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from emp_bank
+		limit ${page},${limit}
+	</select>
+	<!-- 根据搜索条件获取员工总量 -->
+	<select id="getEmployeeBankByNNIAOTotal" resultType="Integer">
+		select count(*) from emp_bank where employeeNum LIKE
+		CONCAT('%','${employeeNum}','%') and name LIKE
+		CONCAT('%','${name}','%') and idnumber LIKE
+		CONCAT('%','${idnumber}','%') and account LIKE
+		CONCAT('%','${account}','%') and openbank LIKE
+		CONCAT('%','${openbank}','%')
+	</select>
+	<!-- 通过搜索工号、员工姓名、身份证号、银行卡账号、开户银行的搜索结果 分页 -->
+	<select id="selectBankByNNIAOusePage"
+		parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from emp_bank
+		where employeeNum LIKE CONCAT('%','${employeeNum}','%') and name LIKE
+		CONCAT('%','${name}','%') and idnumber LIKE
+		CONCAT('%','${idnumber}','%') and account LIKE
+		CONCAT('%','${account}','%') and openbank LIKE
+		CONCAT('%','${openbank}','%')
+		limit ${page},${limit}
+	</select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp_bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from emp_bank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Bank">
+    insert into emp_bank (id, employeeNum, name, 
+      account, openbank, idnumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{openbank,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Bank">
+    insert into emp_bank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="openbank != null">
+        openbank,
+      </if>
+      <if test="idnumber != null">
+        idnumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null">
+        #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Bank">
+    update emp_bank
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null">
+        openbank = #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Bank">
+    update emp_bank
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      openbank = #{openbank,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

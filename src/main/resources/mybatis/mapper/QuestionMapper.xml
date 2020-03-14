@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.QuestionMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Question">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recruitment_id" jdbcType="VARCHAR" property="recruitment_id" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="resolve" jdbcType="VARCHAR" property="resolve" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recruitment_id, question, description, resolve
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from question_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from question_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Question">
+    insert into question_record (id, recruitment_id, question, 
+      description, resolve)
+    values (#{id,jdbcType=INTEGER}, #{recruitment_id,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{resolve,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Question">
+    insert into question_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recruitment_id != null">
+        recruitment_id,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="resolve != null">
+        resolve,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recruitment_id != null">
+        #{recruitment_id,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="resolve != null">
+        #{resolve,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Question">
+    update question_record
+    <set>
+      <if test="recruitment_id != null">
+        recruitment_id = #{recruitment_id,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="resolve != null">
+        resolve = #{resolve,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Question">
+    update question_record
+    set recruitment_id = #{recruitment_id,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      resolve = #{resolve,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.TrainerMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Trainer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="trainerid" jdbcType="VARCHAR" property="trainerid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="join_time" jdbcType="DATE" property="join_time" />
+    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="methods" jdbcType="VARCHAR" property="methods" />
+    <result column="course_scores" jdbcType="VARCHAR" property="course_scores" />
+    <result column="scores" jdbcType="VARCHAR" property="scores" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trainerid, name, department, join_time, duration, content, methods, course_scores, 
+    scores
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trainer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trainer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Trainer">
+    insert into trainer (id, trainerid, name, 
+      department, join_time, duration, 
+      content, methods, course_scores, 
+      scores)
+    values (#{id,jdbcType=INTEGER}, #{trainerid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{join_time,jdbcType=DATE}, #{duration,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{methods,jdbcType=VARCHAR}, #{course_scores,jdbcType=VARCHAR}, 
+      #{scores,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Trainer">
+    insert into trainer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="trainerid != null">
+        trainerid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="join_time != null">
+        join_time,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="methods != null">
+        methods,
+      </if>
+      <if test="course_scores != null">
+        course_scores,
+      </if>
+      <if test="scores != null">
+        scores,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="trainerid != null">
+        #{trainerid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="join_time != null">
+        #{join_time,jdbcType=DATE},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="methods != null">
+        #{methods,jdbcType=VARCHAR},
+      </if>
+      <if test="course_scores != null">
+        #{course_scores,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null">
+        #{scores,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Trainer">
+    update trainer
+    <set>
+      <if test="trainerid != null">
+        trainerid = #{trainerid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="join_time != null">
+        join_time = #{join_time,jdbcType=DATE},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="methods != null">
+        methods = #{methods,jdbcType=VARCHAR},
+      </if>
+      <if test="course_scores != null">
+        course_scores = #{course_scores,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null">
+        scores = #{scores,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Trainer">
+    update trainer
+    set trainerid = #{trainerid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      join_time = #{join_time,jdbcType=DATE},
+      duration = #{duration,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      methods = #{methods,jdbcType=VARCHAR},
+      course_scores = #{course_scores,jdbcType=VARCHAR},
+      scores = #{scores,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.TransferMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Transfer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="idnumber" jdbcType="VARCHAR" property="idnumber" />
+    <result column="education_background" jdbcType="VARCHAR" property="education_background" />
+    <result column="origin_department" jdbcType="VARCHAR" property="origin_department" />
+    <result column="origin_position" jdbcType="VARCHAR" property="origin_position" />
+    <result column="new_department" jdbcType="VARCHAR" property="new_department" />
+    <result column="new_position" jdbcType="VARCHAR" property="new_position" />
+    <result column="recommendation" jdbcType="VARCHAR" property="recommendation" />
+    <result column="interview" jdbcType="VARCHAR" property="interview" />
+    <result column="reinterview" jdbcType="VARCHAR" property="reinterview" />
+    <result column="department_check" jdbcType="VARCHAR" property="department_check" />
+    <result column="personnel_check" jdbcType="VARCHAR" property="personnel_check" />
+    <result column="manager_check" jdbcType="VARCHAR" property="manager_check" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, name, sex, idnumber, education_background, origin_department, origin_position, 
+    new_department, new_position, recommendation, interview, reinterview, department_check, 
+    personnel_check, manager_check, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from emp_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Transfer">
+    insert into emp_transfer (id, employeeNum, name, 
+      sex, idnumber, education_background, 
+      origin_department, origin_position, new_department, 
+      new_position, recommendation, interview, 
+      reinterview, department_check, personnel_check, 
+      manager_check, status)
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, #{education_background,jdbcType=VARCHAR}, 
+      #{origin_department,jdbcType=VARCHAR}, #{origin_position,jdbcType=VARCHAR}, #{new_department,jdbcType=VARCHAR}, 
+      #{new_position,jdbcType=VARCHAR}, #{recommendation,jdbcType=VARCHAR}, #{interview,jdbcType=VARCHAR}, 
+      #{reinterview,jdbcType=VARCHAR}, #{department_check,jdbcType=VARCHAR}, #{personnel_check,jdbcType=VARCHAR}, 
+      #{manager_check,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Transfer">
+    insert into emp_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="idnumber != null">
+        idnumber,
+      </if>
+      <if test="education_background != null">
+        education_background,
+      </if>
+      <if test="origin_department != null">
+        origin_department,
+      </if>
+      <if test="origin_position != null">
+        origin_position,
+      </if>
+      <if test="new_department != null">
+        new_department,
+      </if>
+      <if test="new_position != null">
+        new_position,
+      </if>
+      <if test="recommendation != null">
+        recommendation,
+      </if>
+      <if test="interview != null">
+        interview,
+      </if>
+      <if test="reinterview != null">
+        reinterview,
+      </if>
+      <if test="department_check != null">
+        department_check,
+      </if>
+      <if test="personnel_check != null">
+        personnel_check,
+      </if>
+      <if test="manager_check != null">
+        manager_check,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="education_background != null">
+        #{education_background,jdbcType=VARCHAR},
+      </if>
+      <if test="origin_department != null">
+        #{origin_department,jdbcType=VARCHAR},
+      </if>
+      <if test="origin_position != null">
+        #{origin_position,jdbcType=VARCHAR},
+      </if>
+      <if test="new_department != null">
+        #{new_department,jdbcType=VARCHAR},
+      </if>
+      <if test="new_position != null">
+        #{new_position,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendation != null">
+        #{recommendation,jdbcType=VARCHAR},
+      </if>
+      <if test="interview != null">
+        #{interview,jdbcType=VARCHAR},
+      </if>
+      <if test="reinterview != null">
+        #{reinterview,jdbcType=VARCHAR},
+      </if>
+      <if test="department_check != null">
+        #{department_check,jdbcType=VARCHAR},
+      </if>
+      <if test="personnel_check != null">
+        #{personnel_check,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_check != null">
+        #{manager_check,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Transfer">
+    update emp_transfer
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="education_background != null">
+        education_background = #{education_background,jdbcType=VARCHAR},
+      </if>
+      <if test="origin_department != null">
+        origin_department = #{origin_department,jdbcType=VARCHAR},
+      </if>
+      <if test="origin_position != null">
+        origin_position = #{origin_position,jdbcType=VARCHAR},
+      </if>
+      <if test="new_department != null">
+        new_department = #{new_department,jdbcType=VARCHAR},
+      </if>
+      <if test="new_position != null">
+        new_position = #{new_position,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendation != null">
+        recommendation = #{recommendation,jdbcType=VARCHAR},
+      </if>
+      <if test="interview != null">
+        interview = #{interview,jdbcType=VARCHAR},
+      </if>
+      <if test="reinterview != null">
+        reinterview = #{reinterview,jdbcType=VARCHAR},
+      </if>
+      <if test="department_check != null">
+        department_check = #{department_check,jdbcType=VARCHAR},
+      </if>
+      <if test="personnel_check != null">
+        personnel_check = #{personnel_check,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_check != null">
+        manager_check = #{manager_check,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Transfer">
+    update emp_transfer
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      education_background = #{education_background,jdbcType=VARCHAR},
+      origin_department = #{origin_department,jdbcType=VARCHAR},
+      origin_position = #{origin_position,jdbcType=VARCHAR},
+      new_department = #{new_department,jdbcType=VARCHAR},
+      new_position = #{new_position,jdbcType=VARCHAR},
+      recommendation = #{recommendation,jdbcType=VARCHAR},
+      interview = #{interview,jdbcType=VARCHAR},
+      reinterview = #{reinterview,jdbcType=VARCHAR},
+      department_check = #{department_check,jdbcType=VARCHAR},
+      personnel_check = #{personnel_check,jdbcType=VARCHAR},
+      manager_check = #{manager_check,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

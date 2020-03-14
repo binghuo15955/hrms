@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.EducationMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Education">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="start_time" jdbcType="DATE" property="start_time" />
+    <result column="end_time" jdbcType="DATE" property="end_time" />
+    <result column="class_hour" jdbcType="VARCHAR" property="class_hour" />
+    <result column="scores" jdbcType="VARCHAR" property="scores" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, department, content, start_time, end_time, class_hour, scores
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp_education
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from emp_education
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Education">
+    insert into emp_education (id, employeeNum, department, 
+      content, start_time, end_time, 
+      class_hour, scores)
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{start_time,jdbcType=DATE}, #{end_time,jdbcType=DATE}, 
+      #{class_hour,jdbcType=VARCHAR}, #{scores,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Education">
+    insert into emp_education
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="class_hour != null">
+        class_hour,
+      </if>
+      <if test="scores != null">
+        scores,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=DATE},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=DATE},
+      </if>
+      <if test="class_hour != null">
+        #{class_hour,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null">
+        #{scores,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Education">
+    update emp_education
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="start_time != null">
+        start_time = #{start_time,jdbcType=DATE},
+      </if>
+      <if test="end_time != null">
+        end_time = #{end_time,jdbcType=DATE},
+      </if>
+      <if test="class_hour != null">
+        class_hour = #{class_hour,jdbcType=VARCHAR},
+      </if>
+      <if test="scores != null">
+        scores = #{scores,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Education">
+    update emp_education
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      start_time = #{start_time,jdbcType=DATE},
+      end_time = #{end_time,jdbcType=DATE},
+      class_hour = #{class_hour,jdbcType=VARCHAR},
+      scores = #{scores,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

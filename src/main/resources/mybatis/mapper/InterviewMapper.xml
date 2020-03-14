@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.InterviewMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Interview">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recruitment_id" jdbcType="VARCHAR" property="recruitment_id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="motivation" jdbcType="VARCHAR" property="motivation" />
+    <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="communication" jdbcType="VARCHAR" property="communication" />
+    <result column="mentation" jdbcType="VARCHAR" property="mentation" />
+    <result column="stability" jdbcType="VARCHAR" property="stability" />
+    <result column="maturity" jdbcType="VARCHAR" property="maturity" />
+    <result column="interpersonal_relation" jdbcType="VARCHAR" property="interpersonal_relation" />
+    <result column="cooperative" jdbcType="VARCHAR" property="cooperative" />
+    <result column="others" jdbcType="VARCHAR" property="others" />
+    <result column="pass_first_interview" jdbcType="VARCHAR" property="pass_first_interview" />
+    <result column="interviewer" jdbcType="VARCHAR" property="interviewer" />
+    <result column="first_interview_time" jdbcType="VARCHAR" property="first_interview_time" />
+    <result column="computer_operation" jdbcType="VARCHAR" property="computer_operation" />
+    <result column="last_company" jdbcType="VARCHAR" property="last_company" />
+    <result column="last_position" jdbcType="VARCHAR" property="last_position" />
+    <result column="last_jobcontent" jdbcType="VARCHAR" property="last_jobcontent" />
+    <result column="last_jobreason" jdbcType="VARCHAR" property="last_jobreason" />
+    <result column="expected_salary" jdbcType="VARCHAR" property="expected_salary" />
+    <result column="comprehensive_quality_assessment" jdbcType="VARCHAR" property="comprehensive_quality_assessment" />
+    <result column="reexamination_proposal" jdbcType="VARCHAR" property="reexamination_proposal" />
+    <result column="reexaminationer" jdbcType="VARCHAR" property="reexaminationer" />
+    <result column="reexamination_time" jdbcType="VARCHAR" property="reexamination_time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recruitment_id, name, motivation, appearance, communication, mentation, stability, 
+    maturity, interpersonal_relation, cooperative, others, pass_first_interview, interviewer, 
+    first_interview_time, computer_operation, last_company, last_position, last_jobcontent, 
+    last_jobreason, expected_salary, comprehensive_quality_assessment, reexamination_proposal, 
+    reexaminationer, reexamination_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from interview_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from interview_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Interview">
+    insert into interview_record (id, recruitment_id, name, 
+      motivation, appearance, communication, 
+      mentation, stability, maturity, 
+      interpersonal_relation, cooperative, others, 
+      pass_first_interview, interviewer, first_interview_time, 
+      computer_operation, last_company, last_position, 
+      last_jobcontent, last_jobreason, expected_salary, 
+      comprehensive_quality_assessment, reexamination_proposal, 
+      reexaminationer, reexamination_time)
+    values (#{id,jdbcType=INTEGER}, #{recruitment_id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{motivation,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR}, #{communication,jdbcType=VARCHAR}, 
+      #{mentation,jdbcType=VARCHAR}, #{stability,jdbcType=VARCHAR}, #{maturity,jdbcType=VARCHAR}, 
+      #{interpersonal_relation,jdbcType=VARCHAR}, #{cooperative,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, 
+      #{pass_first_interview,jdbcType=VARCHAR}, #{interviewer,jdbcType=VARCHAR}, #{first_interview_time,jdbcType=VARCHAR}, 
+      #{computer_operation,jdbcType=VARCHAR}, #{last_company,jdbcType=VARCHAR}, #{last_position,jdbcType=VARCHAR}, 
+      #{last_jobcontent,jdbcType=VARCHAR}, #{last_jobreason,jdbcType=VARCHAR}, #{expected_salary,jdbcType=VARCHAR}, 
+      #{comprehensive_quality_assessment,jdbcType=VARCHAR}, #{reexamination_proposal,jdbcType=VARCHAR}, 
+      #{reexaminationer,jdbcType=VARCHAR}, #{reexamination_time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Interview">
+    insert into interview_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recruitment_id != null">
+        recruitment_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="motivation != null">
+        motivation,
+      </if>
+      <if test="appearance != null">
+        appearance,
+      </if>
+      <if test="communication != null">
+        communication,
+      </if>
+      <if test="mentation != null">
+        mentation,
+      </if>
+      <if test="stability != null">
+        stability,
+      </if>
+      <if test="maturity != null">
+        maturity,
+      </if>
+      <if test="interpersonal_relation != null">
+        interpersonal_relation,
+      </if>
+      <if test="cooperative != null">
+        cooperative,
+      </if>
+      <if test="others != null">
+        others,
+      </if>
+      <if test="pass_first_interview != null">
+        pass_first_interview,
+      </if>
+      <if test="interviewer != null">
+        interviewer,
+      </if>
+      <if test="first_interview_time != null">
+        first_interview_time,
+      </if>
+      <if test="computer_operation != null">
+        computer_operation,
+      </if>
+      <if test="last_company != null">
+        last_company,
+      </if>
+      <if test="last_position != null">
+        last_position,
+      </if>
+      <if test="last_jobcontent != null">
+        last_jobcontent,
+      </if>
+      <if test="last_jobreason != null">
+        last_jobreason,
+      </if>
+      <if test="expected_salary != null">
+        expected_salary,
+      </if>
+      <if test="comprehensive_quality_assessment != null">
+        comprehensive_quality_assessment,
+      </if>
+      <if test="reexamination_proposal != null">
+        reexamination_proposal,
+      </if>
+      <if test="reexaminationer != null">
+        reexaminationer,
+      </if>
+      <if test="reexamination_time != null">
+        reexamination_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recruitment_id != null">
+        #{recruitment_id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="motivation != null">
+        #{motivation,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="communication != null">
+        #{communication,jdbcType=VARCHAR},
+      </if>
+      <if test="mentation != null">
+        #{mentation,jdbcType=VARCHAR},
+      </if>
+      <if test="stability != null">
+        #{stability,jdbcType=VARCHAR},
+      </if>
+      <if test="maturity != null">
+        #{maturity,jdbcType=VARCHAR},
+      </if>
+      <if test="interpersonal_relation != null">
+        #{interpersonal_relation,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperative != null">
+        #{cooperative,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null">
+        #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="pass_first_interview != null">
+        #{pass_first_interview,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewer != null">
+        #{interviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="first_interview_time != null">
+        #{first_interview_time,jdbcType=VARCHAR},
+      </if>
+      <if test="computer_operation != null">
+        #{computer_operation,jdbcType=VARCHAR},
+      </if>
+      <if test="last_company != null">
+        #{last_company,jdbcType=VARCHAR},
+      </if>
+      <if test="last_position != null">
+        #{last_position,jdbcType=VARCHAR},
+      </if>
+      <if test="last_jobcontent != null">
+        #{last_jobcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="last_jobreason != null">
+        #{last_jobreason,jdbcType=VARCHAR},
+      </if>
+      <if test="expected_salary != null">
+        #{expected_salary,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensive_quality_assessment != null">
+        #{comprehensive_quality_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="reexamination_proposal != null">
+        #{reexamination_proposal,jdbcType=VARCHAR},
+      </if>
+      <if test="reexaminationer != null">
+        #{reexaminationer,jdbcType=VARCHAR},
+      </if>
+      <if test="reexamination_time != null">
+        #{reexamination_time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Interview">
+    update interview_record
+    <set>
+      <if test="recruitment_id != null">
+        recruitment_id = #{recruitment_id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="motivation != null">
+        motivation = #{motivation,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="communication != null">
+        communication = #{communication,jdbcType=VARCHAR},
+      </if>
+      <if test="mentation != null">
+        mentation = #{mentation,jdbcType=VARCHAR},
+      </if>
+      <if test="stability != null">
+        stability = #{stability,jdbcType=VARCHAR},
+      </if>
+      <if test="maturity != null">
+        maturity = #{maturity,jdbcType=VARCHAR},
+      </if>
+      <if test="interpersonal_relation != null">
+        interpersonal_relation = #{interpersonal_relation,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperative != null">
+        cooperative = #{cooperative,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null">
+        others = #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="pass_first_interview != null">
+        pass_first_interview = #{pass_first_interview,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewer != null">
+        interviewer = #{interviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="first_interview_time != null">
+        first_interview_time = #{first_interview_time,jdbcType=VARCHAR},
+      </if>
+      <if test="computer_operation != null">
+        computer_operation = #{computer_operation,jdbcType=VARCHAR},
+      </if>
+      <if test="last_company != null">
+        last_company = #{last_company,jdbcType=VARCHAR},
+      </if>
+      <if test="last_position != null">
+        last_position = #{last_position,jdbcType=VARCHAR},
+      </if>
+      <if test="last_jobcontent != null">
+        last_jobcontent = #{last_jobcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="last_jobreason != null">
+        last_jobreason = #{last_jobreason,jdbcType=VARCHAR},
+      </if>
+      <if test="expected_salary != null">
+        expected_salary = #{expected_salary,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensive_quality_assessment != null">
+        comprehensive_quality_assessment = #{comprehensive_quality_assessment,jdbcType=VARCHAR},
+      </if>
+      <if test="reexamination_proposal != null">
+        reexamination_proposal = #{reexamination_proposal,jdbcType=VARCHAR},
+      </if>
+      <if test="reexaminationer != null">
+        reexaminationer = #{reexaminationer,jdbcType=VARCHAR},
+      </if>
+      <if test="reexamination_time != null">
+        reexamination_time = #{reexamination_time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Interview">
+    update interview_record
+    set recruitment_id = #{recruitment_id,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      motivation = #{motivation,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      communication = #{communication,jdbcType=VARCHAR},
+      mentation = #{mentation,jdbcType=VARCHAR},
+      stability = #{stability,jdbcType=VARCHAR},
+      maturity = #{maturity,jdbcType=VARCHAR},
+      interpersonal_relation = #{interpersonal_relation,jdbcType=VARCHAR},
+      cooperative = #{cooperative,jdbcType=VARCHAR},
+      others = #{others,jdbcType=VARCHAR},
+      pass_first_interview = #{pass_first_interview,jdbcType=VARCHAR},
+      interviewer = #{interviewer,jdbcType=VARCHAR},
+      first_interview_time = #{first_interview_time,jdbcType=VARCHAR},
+      computer_operation = #{computer_operation,jdbcType=VARCHAR},
+      last_company = #{last_company,jdbcType=VARCHAR},
+      last_position = #{last_position,jdbcType=VARCHAR},
+      last_jobcontent = #{last_jobcontent,jdbcType=VARCHAR},
+      last_jobreason = #{last_jobreason,jdbcType=VARCHAR},
+      expected_salary = #{expected_salary,jdbcType=VARCHAR},
+      comprehensive_quality_assessment = #{comprehensive_quality_assessment,jdbcType=VARCHAR},
+      reexamination_proposal = #{reexamination_proposal,jdbcType=VARCHAR},
+      reexaminationer = #{reexaminationer,jdbcType=VARCHAR},
+      reexamination_time = #{reexamination_time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

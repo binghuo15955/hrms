@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.SalaryMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Salary">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="base_pay" jdbcType="VARCHAR" property="base_pay" />
+    <result column="allowances" jdbcType="VARCHAR" property="allowances" />
+    <result column="welfare" jdbcType="VARCHAR" property="welfare" />
+    <result column="incentives_deductions" jdbcType="VARCHAR" property="incentives_deductions" />
+    <result column="absence" jdbcType="VARCHAR" property="absence" />
+    <result column="overtime_pay" jdbcType="VARCHAR" property="overtime_pay" />
+    <result column="individual_income_tax" jdbcType="VARCHAR" property="individual_income_tax" />
+    <result column="annual_awards" jdbcType="VARCHAR" property="annual_awards" />
+    <result column="final_salary" jdbcType="VARCHAR" property="final_salary" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, base_pay, allowances, welfare, incentives_deductions, absence, overtime_pay, 
+    individual_income_tax, annual_awards, final_salary
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from salary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Salary">
+    insert into salary (id, employeeNum, base_pay, 
+      allowances, welfare, incentives_deductions, 
+      absence, overtime_pay, individual_income_tax, 
+      annual_awards, final_salary)
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{base_pay,jdbcType=VARCHAR}, 
+      #{allowances,jdbcType=VARCHAR}, #{welfare,jdbcType=VARCHAR}, #{incentives_deductions,jdbcType=VARCHAR}, 
+      #{absence,jdbcType=VARCHAR}, #{overtime_pay,jdbcType=VARCHAR}, #{individual_income_tax,jdbcType=VARCHAR}, 
+      #{annual_awards,jdbcType=VARCHAR}, #{final_salary,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Salary">
+    insert into salary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="base_pay != null">
+        base_pay,
+      </if>
+      <if test="allowances != null">
+        allowances,
+      </if>
+      <if test="welfare != null">
+        welfare,
+      </if>
+      <if test="incentives_deductions != null">
+        incentives_deductions,
+      </if>
+      <if test="absence != null">
+        absence,
+      </if>
+      <if test="overtime_pay != null">
+        overtime_pay,
+      </if>
+      <if test="individual_income_tax != null">
+        individual_income_tax,
+      </if>
+      <if test="annual_awards != null">
+        annual_awards,
+      </if>
+      <if test="final_salary != null">
+        final_salary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="base_pay != null">
+        #{base_pay,jdbcType=VARCHAR},
+      </if>
+      <if test="allowances != null">
+        #{allowances,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null">
+        #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="incentives_deductions != null">
+        #{incentives_deductions,jdbcType=VARCHAR},
+      </if>
+      <if test="absence != null">
+        #{absence,jdbcType=VARCHAR},
+      </if>
+      <if test="overtime_pay != null">
+        #{overtime_pay,jdbcType=VARCHAR},
+      </if>
+      <if test="individual_income_tax != null">
+        #{individual_income_tax,jdbcType=VARCHAR},
+      </if>
+      <if test="annual_awards != null">
+        #{annual_awards,jdbcType=VARCHAR},
+      </if>
+      <if test="final_salary != null">
+        #{final_salary,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Salary">
+    update salary
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="base_pay != null">
+        base_pay = #{base_pay,jdbcType=VARCHAR},
+      </if>
+      <if test="allowances != null">
+        allowances = #{allowances,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null">
+        welfare = #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="incentives_deductions != null">
+        incentives_deductions = #{incentives_deductions,jdbcType=VARCHAR},
+      </if>
+      <if test="absence != null">
+        absence = #{absence,jdbcType=VARCHAR},
+      </if>
+      <if test="overtime_pay != null">
+        overtime_pay = #{overtime_pay,jdbcType=VARCHAR},
+      </if>
+      <if test="individual_income_tax != null">
+        individual_income_tax = #{individual_income_tax,jdbcType=VARCHAR},
+      </if>
+      <if test="annual_awards != null">
+        annual_awards = #{annual_awards,jdbcType=VARCHAR},
+      </if>
+      <if test="final_salary != null">
+        final_salary = #{final_salary,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Salary">
+    update salary
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      base_pay = #{base_pay,jdbcType=VARCHAR},
+      allowances = #{allowances,jdbcType=VARCHAR},
+      welfare = #{welfare,jdbcType=VARCHAR},
+      incentives_deductions = #{incentives_deductions,jdbcType=VARCHAR},
+      absence = #{absence,jdbcType=VARCHAR},
+      overtime_pay = #{overtime_pay,jdbcType=VARCHAR},
+      individual_income_tax = #{individual_income_tax,jdbcType=VARCHAR},
+      annual_awards = #{annual_awards,jdbcType=VARCHAR},
+      final_salary = #{final_salary,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

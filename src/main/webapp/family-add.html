@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+<meta charset="UTF-8">
+<title>欢迎页面-X-admin2.2</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+<link rel="stylesheet" href="./css/font.css">
+<link rel="stylesheet" href="./css/xadmin.css">
+<link rel="stylesheet" href="css/messagedetail.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="./lib/layui/layui.js"
+	charset="utf-8"></script>
+<script type="text/javascript" src="js/message.js"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row">
+			<form class="layui-form layui-form-pane" lay-filter="family">
+			<fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
+				  <legend>新增员工家庭信息</legend>
+				  <input type="hidden" name="id" id="id">
+				</fieldset>
+				<div class="layui-form-item">
+					<div class="layui-col-md6">
+						<label for="employeeNum" class="layui-form-label"> <span
+							class="x-red">*</span>工号
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="employeeNum" name="employeeNum"
+								lay-verify="required" autocomplete="off"
+								class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<label for="name" class="layui-form-label"> <span
+							class="x-red">*</span>员工姓名
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="name" name="employeename" lay-verify="required"
+								autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+					<div class="layui-form-item">
+							<div class="layui-col-md3">
+								<label for="relationship" class="layui-form-label"> <span
+									class="x-red">*</span>与本人的关系
+								</label>
+								<div class="layui-input-inline">
+									<select id="relationship" name="relationship"  lay-verify="required"
+										class="relationship">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-col-md3">
+								<label for="relativename" class="layui-form-label"> <span
+									class="x-red">*</span>亲属姓名
+								</label>
+								<div class="layui-inline">
+									<input class="layui-input" autocomplete="off"  lay-verify="required"
+										placeholder="他/她的大名" name="name" id="relativename">
+								</div>
+							</div>
+							<div class="layui-col-md3">
+								<label for="company" class="layui-form-label"> <span
+									class="x-red">*</span>工作单位
+								</label>
+								<div class="layui-inline">
+									<input class="layui-input" autocomplete="off"  lay-verify="required"
+										placeholder="工作单位" name="company" id="company">
+								</div>
+							</div>
+							<div class="layui-col-md3">
+								<label for="position" class="layui-form-label"> <span
+									class="x-red">*</span>职位
+								</label>
+								<div class="layui-inline">
+									<select id="position" name="position" class="position"  lay-verify="required">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-col-md3">
+								<label for="address" class="layui-form-label"> <span
+									class="x-red">*</span>家庭详细地址
+								</label>
+								<div class="layui-inline">
+									<input class="layui-input" autocomplete="off"  lay-verify="required"
+										placeholder="请填写详细家庭地址" name="address" id="address">
+								</div>
+							</div>
+							<div class="layui-col-md3">
+								<label for="idnumber" class="layui-form-label"> <span
+									class="x-red">*</span>身份证号码
+								</label>
+								<div class="layui-inline">
+									<input class="layui-input" autocomplete="off"  lay-verify="required"
+										placeholder="请填写身份证号" name="idnumber" id="idnumber">
+								</div>
+							</div>
+							<div class="layui-col-md3">
+								<label for="telephone" class="layui-form-label"> <span
+									class="x-red">*</span>联系方式
+								</label>
+								<div class="layui-inline">
+									<input class="layui-input" autocomplete="off"  lay-verify="required"
+										placeholder="请填写她/他联系方式" name="telephone" id="telephone">
+								</div>
+							</div>
+						</div>
+				<div class="layui-form-item" id="btn">
+					<button class="layui-btn" lay-filter="add" lay-submit>确认添加并关闭</button>
+					<button class="layui-btn layui-btn-warm" lay-filter="continue" lay-submit>保存并继续添加</button>
+					<button class="layui-btn layui-btn-danger"  onclick="exit()">关闭</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+
+	<script>
+		layui.use([ 'form', 'layer', 'jquery', 'laydate' ], function() {
+			var $ = layui.jquery;
+			var form = layui.form, layer = layui.layer;
+
+			//监听表单提交事件
+			form.on('submit(add)', function(data) {
+				var param = data.field;//定义临时变量获取表单提交过来的数据，非json格式
+				console.log("提交表单信息：",JSON.stringify(param));//测试是否获取到表单数据，调试模式下在页面控制台查看
+				$.ajax({
+					url : "/hrms/family/add",
+					type : 'post',//method请求方式，get或者post
+					data : param,//表格数据序列化
+					async : false,
+					success : function(res) {//res为相应体,function为回调函数
+						if (res>0) {
+							layer.msg('添加家庭信息成功', {
+								icon : 1,
+								time : 1000
+							}, function() {
+								parent.location.reload();
+								var index = parent.layer
+										.getFrameIndex(window.name);
+								//关闭当前frame
+								parent.layer.close(index)
+							});
+							//$("#res").click();//调用重置按钮将表单数据清空
+						} else {
+							layer.alert("添加失败", {
+								icon : 5
+							});
+							console.log("failed")
+						}
+					},
+					error : function() {
+						layer.alert('查无没有此员工！请确认员工工号是否正确！！', {
+							icon : 5
+						});
+					}
+				});
+				return false;
+			});
+
+			form.on('submit(continue)', function(data) {
+				var param = data.field;//定义临时变量获取表单提交过来的数据，非json格式
+				console.log("提交表单信息：",JSON.stringify(param));//测试是否获取到表单数据，调试模式下在页面控制台查看
+				$.ajax({
+					url : "/hrms/family/add",
+					type : 'post',//method请求方式，get或者post
+					data : param,//表格数据序列化
+					async : false,
+					success : function(res) {//res为相应体,function为回调函数
+						if (res>0) {
+							layer.msg('添加家庭信息成功', {
+								icon : 1,
+								time : 800
+							}, function() {
+								$('#family')[0].reset();
+							});
+							//$("#res").click();//调用重置按钮将表单数据清空
+						} else {
+							layer.alert("修改失败", {
+								icon : 5
+							});
+							console.log("failed")
+						}
+					},
+					error : function() {
+						layer.alert('查无没有此员工！请确认员工工号是否正确！！', {
+							icon : 5
+						});
+					}
+				});
+				return false;
+			});
+
+		});
+	</script>
+</body>
+
+</html>

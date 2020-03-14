@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.PlanMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Plan">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="project" jdbcType="VARCHAR" property="project" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="target_object" jdbcType="VARCHAR" property="target_object" />
+    <result column="purpose" jdbcType="VARCHAR" property="purpose" />
+    <result column="methods" jdbcType="VARCHAR" property="methods" />
+    <result column="plus" jdbcType="VARCHAR" property="plus" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="start_time" jdbcType="DATE" property="start_time" />
+    <result column="end_time" jdbcType="DATE" property="end_time" />
+    <result column="class_hour" jdbcType="VARCHAR" property="class_hour" />
+    <result column="trainerid" jdbcType="VARCHAR" property="trainerid" />
+    <result column="trainer" jdbcType="VARCHAR" property="trainer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project, content, target_object, purpose, methods, plus, detail, start_time, 
+    end_time, class_hour, trainerid, trainer
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from culitvate_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from culitvate_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Plan">
+    insert into culitvate_plan (id, project, content, 
+      target_object, purpose, methods, 
+      plus, detail, start_time, 
+      end_time, class_hour, trainerid, 
+      trainer)
+    values (#{id,jdbcType=INTEGER}, #{project,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{target_object,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, #{methods,jdbcType=VARCHAR}, 
+      #{plus,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{start_time,jdbcType=DATE}, 
+      #{end_time,jdbcType=DATE}, #{class_hour,jdbcType=VARCHAR}, #{trainerid,jdbcType=VARCHAR}, 
+      #{trainer,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Plan">
+    insert into culitvate_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="project != null">
+        project,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="target_object != null">
+        target_object,
+      </if>
+      <if test="purpose != null">
+        purpose,
+      </if>
+      <if test="methods != null">
+        methods,
+      </if>
+      <if test="plus != null">
+        plus,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="class_hour != null">
+        class_hour,
+      </if>
+      <if test="trainerid != null">
+        trainerid,
+      </if>
+      <if test="trainer != null">
+        trainer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="project != null">
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="target_object != null">
+        #{target_object,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="methods != null">
+        #{methods,jdbcType=VARCHAR},
+      </if>
+      <if test="plus != null">
+        #{plus,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=DATE},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=DATE},
+      </if>
+      <if test="class_hour != null">
+        #{class_hour,jdbcType=VARCHAR},
+      </if>
+      <if test="trainerid != null">
+        #{trainerid,jdbcType=VARCHAR},
+      </if>
+      <if test="trainer != null">
+        #{trainer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Plan">
+    update culitvate_plan
+    <set>
+      <if test="project != null">
+        project = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="target_object != null">
+        target_object = #{target_object,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null">
+        purpose = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="methods != null">
+        methods = #{methods,jdbcType=VARCHAR},
+      </if>
+      <if test="plus != null">
+        plus = #{plus,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="start_time != null">
+        start_time = #{start_time,jdbcType=DATE},
+      </if>
+      <if test="end_time != null">
+        end_time = #{end_time,jdbcType=DATE},
+      </if>
+      <if test="class_hour != null">
+        class_hour = #{class_hour,jdbcType=VARCHAR},
+      </if>
+      <if test="trainerid != null">
+        trainerid = #{trainerid,jdbcType=VARCHAR},
+      </if>
+      <if test="trainer != null">
+        trainer = #{trainer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Plan">
+    update culitvate_plan
+    set project = #{project,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      target_object = #{target_object,jdbcType=VARCHAR},
+      purpose = #{purpose,jdbcType=VARCHAR},
+      methods = #{methods,jdbcType=VARCHAR},
+      plus = #{plus,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      start_time = #{start_time,jdbcType=DATE},
+      end_time = #{end_time,jdbcType=DATE},
+      class_hour = #{class_hour,jdbcType=VARCHAR},
+      trainerid = #{trainerid,jdbcType=VARCHAR},
+      trainer = #{trainer,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

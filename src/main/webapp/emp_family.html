@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+<head>
+<meta charset="UTF-8">
+<title>欢迎页面-X-admin2.2</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+<link rel="stylesheet" href="./css/font.css">
+<link rel="stylesheet" href="./css/xadmin.css">
+<script src="./lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+<!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+	<div class="x-nav"><span style="font-size: 17px;"><i class="icon iconfont">&#xe6a7;&#xe6a7;&#xe6a7;</i>员工家庭信息</span><a class="layui-btn layui-btn-small"
+			style="line-height: 1.6em; margin-top: 3px; float: right"
+			onclick="location.reload()" title="刷新"> <i
+			class="layui-icon layui-icon-refresh" style="line-height: 30px"></i></a>
+	</div>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md12">
+				<div class="layui-card">
+					<div class="layui-card-body ">
+						<form class="layui-form layui-col-space5" id="myform">
+							<!-- <div class="layui-inline layui-show-xs-block">
+								<input type="text" id="employeeNum_search"
+									name="employeeNum_search" placeholder="通过工号查询"
+									autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="name_search" name="name_search"
+									placeholder="通过员工姓名查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="idnumber_search" name="idnumber_search"
+									placeholder="通过员工身份证号码查询" autocomplete="off" class="layui-input">
+							</div> -->
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="relative_name_search" name="relative_name_search"
+									placeholder="通过亲属姓名查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="relative_company_search" name="relative_company_search"
+									placeholder="通过亲属所在公司名称查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="relative_position_search" name="relative_position_search"
+									placeholder="通过亲属职位查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="relative_idnumber_search" name="relative_idnumber_search"
+									placeholder="通过亲属身份证号查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<input type="text" id="relative_telephone_search" name="relative_telephone_search"
+									placeholder="通过亲属联系方式查询" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline layui-show-xs-block">
+								<button class="layui-btn" lay-submit>
+									<i class="layui-icon">&#xe615;</i>
+								</button>
+								<button type="button" class="layui-btn" lay-submit>
+									<i class="layui-icon" onclick="clearform()">清空所有条件</i>
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="layui-card-header">
+						<!-- 	<button class="layui-btn layui-btn-danger" onclick="delAll()">
+							<i class="layui-icon"></i>批量删除
+						</button> -->
+						<button class="layui-btn"
+							onclick="xadmin.open('添加员工家庭信息','./family-add.html','','',true)">
+							<i class="layui-icon"></i>添加员工家庭信息
+						</button>
+					</div>
+					<div class="layui-card-body layui-table-body layui-table-main">
+						<table class="layui-table layui-form" id="showFamily"></table>
+					</div>
+					<div class="layui-card-body ">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	
+</script>
+<script>
+	layui
+			.use(
+					[ 'laydate', 'form', 'table', 'jquery', 'laypage', 'layer' ],
+					function() {
+						var laydate = layui.laydate;
+						var form = layui.form;
+						var table = layui.table;
+						var $ = layui.jquery;
+						var laypage = layui.laypage, layer = layui.layer
+
+						table.on('tool', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+							var data = obj.data; //获得当前行数据
+							var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+							var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+							 if (layEvent === 'del') { //删除
+								layer.confirm('确认删除吗？', function(index) {
+									obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+									layer.close(index);
+									//向服务端发送删除指令
+									$.ajax({
+										url : "/hrms/family/del",
+										type : 'post',//method请求方式，get或者post
+										data : data,
+										dataType : "text",
+										async : false,
+										success : function(data) {//res为相应体,function为回调函数
+											if (data == "success") {
+												layer.msg('已删除!', {
+													icon : 1,
+													time : 800
+												});
+												setTimeout('window.location.reload()',0);
+											} else {
+												layer.alert(data.msg, {
+													icon : 5
+												});
+												console.log("failed")
+											}
+										},
+										error : function(error) {
+											console.log(error)
+											layer.alert('操作失败！！！', {
+												icon : 5
+											});
+										}
+									});
+								});
+							} else if (layEvent === 'edit') { //编辑
+								//do something
+								xadmin.open('修改员工家庭信息',
+										'./family-edit.html?id='
+												+ data.id,'','',true)
+							} 
+							return false;
+						});
+
+						table.render({
+							elem : "#showFamily",
+							url : '/hrms/family/getEmployeeFamilybyPage',
+							page : true,
+							limit : 10,
+							limits:[5,10,15,20,50,100],
+							id : "families",
+							cols : [ [ {
+								field : 'id',
+								title : '编号',
+								width : 100,
+								hide:true
+							}, {
+								field : 'employeeNum',
+								title : '工号',	
+							},/* {
+								field : 'employeename',
+								title : '姓名',
+								templet:function(d){
+									return d.messageSet[0].name;
+								}
+							}, */ {
+								field : 'relationship',
+								title : '与本人关系'
+							}, {
+								field : 'name',
+								title : '亲属姓名'
+							}, {
+								field : 'company',
+								title : '亲属所在公司'
+							},{
+								field : 'position',
+								title : '亲属职位'
+							},{
+								field : 'idnumber',
+								title : '亲属身份证号'
+							},{
+								field : 'telephone',
+								title : '亲属联系方式'
+							},{
+								fixed : 'right',
+								title : '操作',
+								width : 200,
+								toolbar : '#barDemo'
+							} ] ],
+							parseData : function(res) { //res 即为原始返回的数据
+								return {
+									"code" : res.status, //解析接口状态
+									"msg" : res.message, //解析提示文本
+									"count" : res.total, //解析数据长度
+									"data" : res.data, //解析数据列表
+								};
+							},
+							done : function(res, curr, count) {
+								console.log(res);
+								//得到当前页码
+								console.log(curr);
+								//得到数据总量
+								console.log(count);
+							}
+						})
+
+						//layui表格重载：点击查询的时候触发、条件搜索
+						form.render();
+						form.on('submit',function(data) {
+											var formData = data.field;
+											console.log(formData);
+											var employeeNum_search = formData.employeeNum_search, name_search = formData.name_search,
+											idnumber_search=formData.idnumber_search,relative_name_search=formData.relative_name_search,
+											relative_company_search=formData.relative_company_search,relative_position_search=formData.relative_position_search,
+											relative_idnumber_search=formData.relative_idnumber_search,relative_telephone_search=formData.relative_telephone_search;
+											table
+													.reload(
+															'families',
+															{
+																page : true,
+																limit : 10,
+																limits:[5,10,15,20,50,100],
+																where : {
+																	/* employeeNum : employeeNum_search,
+																	name : name_search,
+																	idnumber : idnumber_search, */
+																	name:relative_name_search,
+																	company:relative_company_search,
+																	position:relative_position_search,
+																	idnumber:relative_idnumber_search,
+																	telephone:relative_telephone_search
+																},
+																method : 'post',
+																contentType : "application/x-www-form-urlencoded;charset=utf-8",
+																url : '/hrms/family/getbyMap'
+															});
+											return false;
+										});
+
+					});
+	function clearform() {
+		$('#myform')[0].reset();
+	}
+</script>
+<script type="text/html" id="barDemo">
+	  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑/查看</a>
+	  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+</html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
+	</head>
+	<body>
+		<div id="app">
+			<fm-generate-form :data="jsonData" :remote="remoteFuncs" :value="editData" :remote-option="dynamicData" ref="generateForm">
+				<template slot="blank_1578196261428" slot-scope="scope">
+					<!-- 自定义区域 -->
+					<!-- use v-model="scope.model.blank_1578196261428" to bind data --> </template> </fm-generate-form>
+			<div style="text-align: center;">
+				<el-button type="primary" @click="handleSubmit">提交</el-button>
+			</div>
+		</div>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					jsonData: {
+						"list": [{
+								"type": "blank",
+								"icon": "icon-zidingyishuju",
+								"options": {
+									"defaultType": "String",
+									"customClass": "",
+									"width": "",
+									"labelWidth": 100,
+									"isLabelWidth": false,
+									"hidden": false,
+									"dataBind": true,
+									"remoteFunc": "func_1578196261428",
+									"remoteOption": "option_1578196261428"
+								},
+								"name": "",
+								"key": "1578196266321",
+								"model": "",
+								"rules": [
+
+								],
+								"novalid": {
+
+								}
+							},
+							{
+								"type": "grid",
+								"icon": "icon-RectangleCopy",
+								"columns": [{
+										"span": 12,
+										"list": [{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "90%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "系统默认自动填写",
+													"customClass": "",
+													"disabled": true,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578196272078",
+													"remoteOption": "option_1578196272078"
+												},
+												"name": "工号",
+												"novalid": {
+
+												},
+												"key": "1578196272078",
+												"model": "employeeNum",
+												"rules": [{
+													"type": "string",
+													"message": "工号格式不正确"
+												}]
+											},
+											{
+												"type": "date",
+												"icon": "icon-date",
+												"options": {
+													"defaultValue": "",
+													"readonly": false,
+													"disabled": false,
+													"editable": true,
+													"clearable": true,
+													"placeholder": "",
+													"startPlaceholder": "",
+													"endPlaceholder": "",
+													"type": "date",
+													"format": "yyyy-MM-dd",
+													"timestamp": true,
+													"required": false,
+													"width": "",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"remoteFunc": "func_1578196669904",
+													"remoteOption": "option_1578196669904"
+												},
+												"name": "出生日期",
+												"novalid": {
+
+												},
+												"key": "1578196707936",
+												"model": "birthday",
+												"rules": [{
+													"required": false,
+													"message": "出生日期必须填写"
+												}]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "90%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578196272078",
+													"remoteOption": "option_1578196272078"
+												},
+												"name": "民族",
+												"novalid": {
+
+												},
+												"key": "1578197041998",
+												"model": "nation",
+												"rules": [{
+													"type": "string",
+													"message": "民族格式不正确"
+												}]
+											},
+											{
+												"type": "cascader",
+												"icon": "icon-jilianxuanze",
+												"options": {
+													"defaultValue": [
+
+													],
+													"width": "",
+													"placeholder": "选择出生地",
+													"disabled": false,
+													"clearable": true,
+													"remote": true,
+													"remoteType": "option",
+													"remoteOption": "option_1578198393071",
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label",
+														"children": "children"
+													},
+													"remoteFunc": "func_1578198393071",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "出生地",
+												"novalid": {
+
+												},
+												"key": "1578199602186",
+												"model": "birthplace",
+												"rules": [
+
+												]
+											},
+											{
+												"type": "date",
+												"icon": "icon-date",
+												"options": {
+													"defaultValue": "",
+													"readonly": false,
+													"disabled": false,
+													"editable": true,
+													"clearable": true,
+													"placeholder": "",
+													"startPlaceholder": "",
+													"endPlaceholder": "",
+													"type": "date",
+													"format": "yyyy-MM-dd",
+													"timestamp": false,
+													"required": false,
+													"width": "",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"remoteFunc": "func_1578199639417",
+													"remoteOption": "option_1578199639417"
+												},
+												"name": "参加工作日",
+												"key": "1578199696682",
+												"model": "joinJobDay",
+												"rules": [{
+													"required": false,
+													"message": "参加工作日必须填写"
+												}],
+												"novalid": {
+
+												}
+											},
+											{
+												"type": "radio",
+												"icon": "icon-radio-active",
+												"options": {
+													"inline": true,
+													"defaultValue": "",
+													"showLabel": false,
+													"options": [{
+															"value": "A",
+															"label": "Option 1"
+														},
+														{
+															"value": "B",
+															"label": "Option 2"
+														},
+														{
+															"value": "AB",
+															"label": "Option 3"
+														},
+														{
+															"value": "O"
+														}
+													],
+													"required": false,
+													"width": "",
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578232841423",
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578232841423",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"disabled": false
+												},
+												"name": "血型",
+												"novalid": {
+
+												},
+												"key": "1578232841423",
+												"model": "blood",
+												"rules": [{
+													"required": false,
+													"message": "血型必须填写"
+												}]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "---请选择---",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "城市"
+														},
+														{
+															"value": "农村"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578233217801",
+													"filterable": true,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578233217801",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "户口性质",
+												"novalid": {
+
+												},
+												"key": "1578233217801",
+												"model": "householdtype",
+												"rules": [{
+													"required": false,
+													"message": "户口性质必须填写"
+												}]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "80%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "/^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$/",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232738576",
+													"remoteOption": "option_1578232738576"
+												},
+												"name": "e-mail",
+												"novalid": {
+
+												},
+												"key": "1578233572039",
+												"model": "email",
+												"rules": [{
+														"type": "string",
+														"message": "e-mail格式不正确"
+													},
+													{
+														"required": false,
+														"message": "e-mail必须填写"
+													}
+													/* ,
+																    {
+																      "pattern": "/^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$/",
+																      "message": "e-mail格式不匹配"
+																    } */
+												]
+											}
+										]
+									},
+									{
+										"span": 12,
+										"list": [{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "90%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578196272078",
+													"remoteOption": "option_1578196272078"
+												},
+												"name": "姓名",
+												"novalid": {
+
+												},
+												"key": "1578196433881",
+												"model": "name",
+												"rules": [{
+													"type": "string",
+													"message": "姓名格式不正确"
+												}]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "选择部门",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "人事部"
+														},
+														{
+															"value": "财务部"
+														},
+														{
+															"value": "行政部"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578196274525",
+													"filterable": true,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578196274525",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "部门",
+												"novalid": {
+
+												},
+												"key": "1578196714092",
+												"model": "department",
+												"rules": [{
+													"required": false,
+													"message": "部门必须填写"
+												}]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "未婚"
+														},
+														{
+															"value": "已婚"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578196274525",
+													"filterable": false,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578196274525",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "婚姻情况",
+												"novalid": {
+
+												},
+												"key": "1578197045156",
+												"model": "marital",
+												"rules": [
+
+												]
+											},
+
+											{
+												"type": "date",
+												"icon": "icon-date",
+												"options": {
+													"defaultValue": "",
+													"readonly": false,
+													"disabled": false,
+													"editable": true,
+													"clearable": true,
+													"placeholder": "",
+													"startPlaceholder": "",
+													"endPlaceholder": "",
+													"type": "date",
+													"format": "yyyy-MM-dd",
+													"timestamp": false,
+													"required": false,
+													"width": "",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"remoteFunc": "func_1578199640669",
+													"remoteOption": "option_1578199640669"
+												},
+												"name": "入职日期",
+												"novalid": {
+
+												},
+												"key": "1578199640669",
+												"model": "enrollday",
+												"rules": [{
+													"required": false,
+													"message": "入职日期必须填写"
+												}]
+											},
+											{
+												"type": "cascader",
+												"icon": "icon-jilianxuanze",
+												"options": {
+													"defaultValue": [
+
+													],
+													"width": "",
+													"placeholder": "选择出生地",
+													"disabled": false,
+													"clearable": true,
+													"remote": true,
+													"remoteType": "option",
+													"remoteOption": "option_1578198393071",
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label",
+														"children": "children"
+													},
+													"remoteFunc": "func_1578198393071",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "籍贯",
+												"novalid": {
+
+												},
+												"key": "1578232690672",
+												"model": "nativePlace",
+												"rules": [
+
+												]
+											},
+											{
+												"type": "cascader",
+												"icon": "icon-jilianxuanze",
+												"options": {
+													"defaultValue": [
+
+													],
+													"width": "",
+													"placeholder": "选择现住址",
+													"disabled": false,
+													"clearable": true,
+													"remote": true,
+													"remoteType": "option",
+													"remoteOption": "option_1578198393071",
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label",
+														"children": "children"
+													},
+													"remoteFunc": "func_1578198393071",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "现住址",
+												"novalid": {
+
+												},
+												"key": "1578233311188",
+												"model": "current_address",
+												"rules": [
+
+												]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "60%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232738576",
+													"remoteOption": "option_1578232738576"
+												},
+												"name": "身高",
+												"novalid": {
+
+												},
+												"key": "1578233464160",
+												"model": "height",
+												"rules": [{
+													"type": "string",
+													"message": "身高格式不正确"
+												}]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "80%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "/^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$/",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232738576",
+													"remoteOption": "option_1578232738576"
+												},
+												"name": "联系电话",
+												"novalid": {
+
+												},
+												"key": "1578233468956",
+												"model": "telephone",
+												"rules": [{
+														"type": "string",
+														"message": "联系电话格式不正确"
+													},
+													{
+														"required": false,
+														"message": "联系电话必须填写"
+													},
+													{
+														"pattern": "/^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$/",
+														"message": "联系电话格式不匹配"
+													}
+												]
+											}
+										]
+									},
+									{
+										"span": 12,
+										"list": [{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "男"
+														},
+														{
+															"value": "女"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578196274525",
+													"filterable": true,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578196274525",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "性别",
+												"novalid": {
+
+												},
+												"key": "1578196965554",
+												"model": "sex",
+												"rules": [{
+													"required": false,
+													"message": "性别必须填写"
+												}]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "选择部门",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "经理"
+														},
+														{
+															"value": "组长"
+														},
+														{
+															"value": "员工"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578196274525",
+													"filterable": true,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578196274525",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "职务",
+												"novalid": {
+
+												},
+												"key": "1578196716706",
+												"model": "position",
+												"rules": [{
+													"required": false,
+													"message": "职务必须填写"
+												}]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "",
+													"required": false,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "有"
+														},
+														{
+															"value": "无"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578196274525",
+													"filterable": false,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578196274525",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "是否有子女",
+												"novalid": {
+
+												},
+												"key": "1578196459138",
+												"model": "haveChildren",
+												"rules": [
+
+												]
+											},
+											{
+												"type": "cascader",
+												"icon": "icon-jilianxuanze",
+												"options": {
+													"defaultValue": [
+
+													],
+													"width": "",
+													"placeholder": "选择入职地",
+													"disabled": false,
+													"clearable": true,
+													"remote": true,
+													"remoteType": "option",
+													"remoteOption": "option_1578198393071",
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label",
+														"children": "children"
+													},
+													"remoteFunc": "func_1578198393071",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "入职地",
+												"novalid": {
+
+												},
+												"key": "1578199704882",
+												"model": "enrollplace",
+												"rules": [
+
+												]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "60%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232935113",
+													"remoteOption": "option_1578232935113"
+												},
+												"name": "籍贯地址邮编",
+												"novalid": {
+
+												},
+												"key": "1578233405602",
+												"model": "postcode",
+												"rules": [{
+													"type": "string",
+													"message": "籍贯地址邮编格式不正确"
+												}]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "60%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232935113",
+													"remoteOption": "option_1578232935113"
+												},
+												"name": "现住址邮编",
+												"novalid": {
+
+												},
+												"key": "1578233366101",
+												"model": "current_postcode",
+												"rules": [{
+													"type": "string",
+													"message": "现住址邮编格式不正确"
+												}]
+											},
+											{
+												"type": "input",
+												"icon": "icon-input",
+												"options": {
+													"width": "90%",
+													"defaultValue": "",
+													"required": false,
+													"dataType": "string",
+													"pattern": "/^[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/",
+													"placeholder": "",
+													"customClass": "",
+													"disabled": false,
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true,
+													"showPassword": false,
+													"remoteFunc": "func_1578232738576",
+													"remoteOption": "option_1578232738576"
+												},
+												"name": "身份证号",
+												"novalid": {
+
+												},
+												"key": "1578232996852",
+												"model": "idnumber",
+												"rules": [{
+														"type": "string",
+														"message": "身份证号格式不正确"
+													},
+													{
+														"required": false,
+														"message": "身份证号必须填写"
+													},
+													{
+														"pattern": "/^[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/",
+														"message": "身份证号格式不匹配"
+													}
+												]
+											},
+											{
+												"type": "select",
+												"icon": "icon-select",
+												"options": {
+													"defaultValue": "",
+													"multiple": false,
+													"disabled": false,
+													"clearable": true,
+													"placeholder": "",
+													"required": true,
+													"showLabel": false,
+													"width": "",
+													"options": [{
+															"value": "博士生"
+														},
+														{
+															"value": "研究生"
+														},
+														{
+															"value": "本科"
+														},
+														{
+															"value": "专科"
+														},
+														{
+															"value": "高中"
+														},
+														{
+															"value": "初中"
+														}
+													],
+													"remote": false,
+													"remoteType": "option",
+													"remoteOption": "option_1578233594820",
+													"filterable": true,
+													"remoteOptions": [
+
+													],
+													"props": {
+														"value": "value",
+														"label": "label"
+													},
+													"remoteFunc": "func_1578233594820",
+													"customClass": "",
+													"labelWidth": 100,
+													"isLabelWidth": false,
+													"hidden": false,
+													"dataBind": true
+												},
+												"name": "学历",
+												"key": "1578233600608",
+												"model": "education_background",
+												"rules": [{
+													"required": false,
+													"message": "学历必须填写"
+												}],
+												"novalid": {
+
+												}
+											}
+										]
+									}
+								],
+								"options": {
+									"gutter": 0,
+									"justify": "start",
+									"align": "top",
+									"customClass": "",
+									"hidden": false,
+									"remoteFunc": "func_1578196251653",
+									"remoteOption": "option_1578196251653"
+								},
+								"name": "栅格布局",
+								"key": "1578196251653",
+								"model": "grid_1578196251653",
+								"rules": [
+
+								]
+							}
+						],
+						"config": {
+							"labelWidth": 100,
+							"labelPosition": "right",
+							"size": "small",
+							"customClass": ""
+						}
+					},
+					editData: {},
+					remoteFuncs: {
+
+					},
+					dynamicData: {
+
+					}
+				},
+				methods: {
+					handleSubmit: function() {
+						let data=this.$refs.generateForm.getData()
+						console.log(data)
+						axios.post('/hrms/message/add',data).then(
+							alert("提交成功")
+						)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

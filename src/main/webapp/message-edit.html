@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+<meta charset="UTF-8">
+<title>欢迎页面-X-admin2.2</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+<link rel="stylesheet" href="./css/font.css">
+<link rel="stylesheet" href="./css/xadmin.css">
+<link rel="stylesheet" href="css/message-edit.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="./lib/layui/layui.js"
+	charset="utf-8"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+<script type="text/javascript" src="js/message.js"></script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row">
+			<form class="layui-form layui-form-pane" lay-filter="message">
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>修改员工基本信息</legend>
+				</fieldset>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="employeeNum" class="layui-form-label"> <span
+							class="x-red">*</span>工号
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="employeeNum" name="employeeNum"
+								lay-verify="" placeholder="系统自动填写" autocomplete="off"
+								class="layui-input" disabled="true">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="name" class="layui-form-label"> <span
+							class="x-red">*</span>姓名
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="name" name="name" lay-verify="required"
+								autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="sex" class="layui-form-label"> <span
+							class="x-red">*</span>性别
+						</label>
+						<div class="layui-input-inline">
+							<input type="radio" name="sex" value="男" title="男" checked>
+							<input type="radio" name="sex" value="女" title="女">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="nation" class="layui-form-label"> <span
+							class="x-red">*</span>民族
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="nation" name="nation" autocomplete="off"
+								lay-verify="required" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="enrollday" class="layui-form-label"> <span
+							class="x-red">*</span>入职日期
+						</label>
+						<div class="layui-inline">
+							<input class="layui-input" autocomplete="off" placeholder="入职日期"
+								lay-verify="required" name="enrollday" id="enrollday">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="enrollplace" class="layui-form-label"> <span
+							class="x-red">*</span>入职地
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="enrollplace" name="enrollplace"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="department" class="layui-form-label"> <span
+							class="x-red">*</span>部门
+						</label>
+						<div class="layui-input-inline">
+							<select id="department" name="department" class="department"
+								lay-verify="required">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="position" class="layui-form-label"> <span
+							class="x-red">*</span>职位
+						</label>
+						<div class="layui-input-inline">
+							<select id="position" name="position" class="position"
+								lay-verify="required">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="idnumber" class="layui-form-label"> <span
+							class="x-red">*</span>身份证号
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="idnumber" name="idnumber"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="telephone" class="layui-form-label"> <span
+							class="x-red">*</span>联系电话
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="telephone" name="telephone"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="email" class="layui-form-label"> <span
+							class="x-red">*</span>e-mail
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="email" name="email" autocomplete="off"
+								lay-verify="required" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="education_background" class="layui-form-label">
+							<span class="x-red">*</span>学历
+						</label>
+						<div class="layui-input-inline">
+							<select id="education_background" name="education_background"
+								lay-verify="required" class="education_background">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>修改员工详细信息</legend>
+				</fieldset>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="householdtype" class="layui-form-label"> <span
+							class="x-red">*</span>户口性质
+						</label>
+						<div class="layui-input-inline">
+							<input type="radio" name="householdtype" value="城市" title="城市"
+								checked> <input type="radio" name="householdtype"
+								value="农村" title="农村">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="current_address" class="layui-form-label"> <span
+							class="x-red">*</span>现住址
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="current_address" name="current_address"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="current_postcode" class="layui-form-label"> <span
+							class="x-red">*</span>邮编
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="current_postcode" name="current_postcode"
+								autocomplete="off" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-col-md3">
+						<label for="joinJobDay" class="layui-form-label"> <span
+							class="x-red">*</span>参加工作日期
+						</label>
+						<div class="layui-inline">
+							<input class="layui-input" autocomplete="off"
+								lay-verify="required" placeholder="参加工作日期" name="joinJobDay"
+								id="joinJobDay">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="birthday" class="layui-form-label"> <span
+							class="x-red">*</span>出生日期
+						</label>
+						<div class="layui-inline">
+							<input class="layui-input" autocomplete="off" placeholder="出生日期"
+								lay-verify="required" name="birthday" id="birthday">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="birthplace" class="layui-form-label"> <span
+							class="x-red">*</span>出生地
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="phone" name="birthplace"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="marital" class="layui-form-label"> <span
+							class="x-red">*</span>婚姻状况
+						</label>
+						<div class="layui-input-inline">
+							<select id="marital" name="marital" class="marital"
+								lay-verify="required">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="haveChildren" class="layui-form-label"> <span
+							class="x-red">*</span>是否有子女
+						</label>
+						<div class="layui-input-inline">
+							<input type="checkbox" name="haveChildren" lay-skin="switch"
+								lay-text="有|无">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-col-md3">
+						<label for="height" class="layui-form-label">身高 </label>
+						<div class="layui-input-inline">
+							<input type="text" id="height" name="height" autocomplete="off"
+								class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="blood" class="layui-form-label"> 血型 </label>
+						<div class="layui-input-inline">
+							<select id="blood" name="blood" class="blood">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="nativePlace" class="layui-form-label"> <span
+							class="x-red">*</span>籍贯
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="nativePlace" name="nativePlace"
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-col-md3">
+						<label for="postcode" class="layui-form-label"> <span
+							class="x-red">*</span>籍贯地址邮编
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" id="postcode" name="postcode"
+								autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+				
+				<!-- 接下来是Family的信息填写 -->
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>
+						员工家庭信息
+						<div class="layui-inline">
+							<button type="button"
+								class="layui-btn layui-btn-radius layui-btn-primary add"
+								id="familyadd">
+								<span class="layui-icon">&#xe61f;</span>添加
+							</button>
+						</div>
+					</legend>
+				</fieldset>
+				<div id="family" position="relative"></div>
+
+				<!-- 接下来是Experience的信息填写 -->
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>
+						员工工作简历
+						<div class="layui-inline">
+							<button type="button"
+								class="layui-btn layui-btn-radius layui-btn-primary add"
+								id="experienceadd">
+								<span class="layui-icon">&#xe61f;</span>添加
+							</button>
+						</div>
+					</legend>
+				</fieldset>
+				<div id="experience"></div>
+				<!-- 接下来是Bank的信息填写 -->
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>
+						员工银行账户
+						<div class="layui-inline">
+							<button type="button"
+								class="layui-btn layui-btn-radius layui-btn-primary add"
+								id="bankadd">
+								<span class="layui-icon">&#xe61f;</span>添加
+							</button>
+						</div>
+					</legend>
+				</fieldset>
+				<div id="bank"></div>
+				<!-- 接下来是School的信息填写 -->
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>
+						员工学历信息
+						<div class="layui-inline">
+							<button type="button"
+								class="layui-btn layui-btn-radius layui-btn-primary add"
+								id="schooladd">
+								<span class="layui-icon">&#xe61f;</span>添加
+							</button>
+						</div>
+					</legend>
+				</fieldset>
+				<div id="school"></div>
+				<!-- 接下来是Project的信息填写 -->
+				<fieldset
+					class="layui-elem-field layui-field-title site-demo-button"
+					style="margin-top: 30px;">
+					<legend>
+						员工项目经历
+						<div class="layui-inline">
+							<button type="button"
+								class="layui-btn layui-btn-radius layui-btn-primary add"
+								id="projectadd">
+								<span class="layui-icon">&#xe61f;</span>添加
+							</button>
+						</div>
+					</legend>
+				</fieldset>
+				<div id="project"></div>
+				
+				<div class="layui-form-item" id="btn">
+					<button class="layui-btn layui-btn-lg layui-btn-primary"
+						lay-filter="upt" lay-submit="">保存修改</button>
+					<button class="layui-btn layui-btn-lg layui-btn-danger"
+						onclick="exit()">关闭当前页面</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

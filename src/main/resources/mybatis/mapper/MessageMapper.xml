@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Message">
+    <id column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="marital" jdbcType="VARCHAR" property="marital" />
+    <result column="haveChildren" jdbcType="VARCHAR" property="haveChildren" />
+    <result column="birthplace" jdbcType="VARCHAR" property="birthplace" />
+    <result column="enrollday" jdbcType="DATE" property="enrollday" />
+    <result column="enrollplace" jdbcType="VARCHAR" property="enrollplace" />
+    <result column="joinJobDay" jdbcType="DATE" property="joinJobDay" />
+    <result column="nativePlace" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="blood" jdbcType="VARCHAR" property="blood" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="idnumber" jdbcType="VARCHAR" property="idnumber" />
+    <result column="householdtype" jdbcType="VARCHAR" property="householdtype" />
+    <result column="current_address" jdbcType="VARCHAR" property="current_address" />
+    <result column="current_postcode" jdbcType="VARCHAR" property="current_postcode" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="education_background" jdbcType="VARCHAR" property="education_background" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    employeeNum, name, department, position, sex, nation, birthday, marital, haveChildren, 
+    birthplace, enrollday, enrollplace, joinJobDay, nativePlace, height, blood, postcode, 
+    idnumber, householdtype, current_address, current_postcode, telephone, email, education_background
+  </sql>
+  <select id="getEmployeeMessageTotal" resultType="Integer">
+  	select count(*) from emp_message
+  </select>
+  <select id="getEmployeeMessagebyPage" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List" />
+    from emp_message
+    limit ${page},${limit}
+  </select>
+  <select id="getEmployeeByEmpNumorNameTotal" resultType="Integer">
+  	select count(*) from emp_message where employeeNum LIKE CONCAT('%','${employeeNum}','%') and name LIKE CONCAT('%','${name}','%')
+  </select>
+  <select id="selectEmployeeByEmpNumorNamebyPage" parameterType="map" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List" />
+    from emp_message 
+    where employeeNum LIKE CONCAT('%','${employeeNum}','%') and name LIKE CONCAT('%','${name}','%')
+    limit ${page},${limit}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp_message
+    where employeeNum = #{employeeNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from emp_message
+    where employeeNum = #{employeeNum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Message">
+    insert into emp_message (employeeNum, name, department, 
+      position, sex, nation, 
+      birthday, marital, haveChildren, 
+      birthplace, enrollday, enrollplace, 
+      joinJobDay, nativePlace, height, 
+      blood, postcode, idnumber, 
+      householdtype, current_address, current_postcode, 
+      telephone, email, education_background
+      )
+    values (#{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{marital,jdbcType=VARCHAR}, #{haveChildren,jdbcType=VARCHAR}, 
+      #{birthplace,jdbcType=VARCHAR}, #{enrollday,jdbcType=DATE}, #{enrollplace,jdbcType=VARCHAR}, 
+      #{joinJobDay,jdbcType=DATE}, #{nativePlace,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
+      #{blood,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{householdtype,jdbcType=VARCHAR}, #{current_address,jdbcType=VARCHAR}, #{current_postcode,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{education_background,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Message">
+    insert into emp_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="marital != null">
+        marital,
+      </if>
+      <if test="haveChildren != null">
+        haveChildren,
+      </if>
+      <if test="birthplace != null">
+        birthplace,
+      </if>
+      <if test="enrollday != null">
+        enrollday,
+      </if>
+      <if test="enrollplace != null">
+        enrollplace,
+      </if>
+      <if test="joinJobDay != null">
+        joinJobDay,
+      </if>
+      <if test="nativePlace != null">
+        nativePlace,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="blood != null">
+        blood,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+      <if test="idnumber != null">
+        idnumber,
+      </if>
+      <if test="householdtype != null">
+        householdtype,
+      </if>
+      <if test="current_address != null">
+        current_address,
+      </if>
+      <if test="current_postcode != null">
+        current_postcode,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="education_background != null">
+        education_background,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="marital != null">
+        #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="haveChildren != null">
+        #{haveChildren,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollday != null">
+        #{enrollday,jdbcType=DATE},
+      </if>
+      <if test="enrollplace != null">
+        #{enrollplace,jdbcType=VARCHAR},
+      </if>
+      <if test="joinJobDay != null">
+        #{joinJobDay,jdbcType=DATE},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="householdtype != null">
+        #{householdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="current_address != null">
+        #{current_address,jdbcType=VARCHAR},
+      </if>
+      <if test="current_postcode != null">
+        #{current_postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="education_background != null">
+        #{education_background,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Message">
+    update emp_message
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="marital != null">
+        marital = #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="haveChildren != null">
+        haveChildren = #{haveChildren,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        birthplace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollday != null">
+        enrollday = #{enrollday,jdbcType=DATE},
+      </if>
+      <if test="enrollplace != null">
+        enrollplace = #{enrollplace,jdbcType=VARCHAR},
+      </if>
+      <if test="joinJobDay != null">
+        joinJobDay = #{joinJobDay,jdbcType=DATE},
+      </if>
+      <if test="nativePlace != null">
+        nativePlace = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        blood = #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="householdtype != null">
+        householdtype = #{householdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="current_address != null">
+        current_address = #{current_address,jdbcType=VARCHAR},
+      </if>
+      <if test="current_postcode != null">
+        current_postcode = #{current_postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="education_background != null">
+        education_background = #{education_background,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where employeeNum = #{employeeNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Message">
+    update emp_message
+    set name = #{name,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      marital = #{marital,jdbcType=VARCHAR},
+      haveChildren = #{haveChildren,jdbcType=VARCHAR},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      enrollday = #{enrollday,jdbcType=DATE},
+      enrollplace = #{enrollplace,jdbcType=VARCHAR},
+      joinJobDay = #{joinJobDay,jdbcType=DATE},
+      nativePlace = #{nativePlace,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      blood = #{blood,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      householdtype = #{householdtype,jdbcType=VARCHAR},
+      current_address = #{current_address,jdbcType=VARCHAR},
+      current_postcode = #{current_postcode,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      education_background = #{education_background,jdbcType=VARCHAR}
+    where employeeNum = #{employeeNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

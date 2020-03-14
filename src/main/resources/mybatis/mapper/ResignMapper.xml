@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.ResignMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Resign">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="employeeNum" jdbcType="VARCHAR" property="employeeNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="enrollday" jdbcType="DATE" property="enrollday" />
+    <result column="resignday" jdbcType="DATE" property="resignday" />
+    <result column="contractday" jdbcType="VARCHAR" property="contractday" />
+    <result column="department_check" jdbcType="VARCHAR" property="department_check" />
+    <result column="personnel_check" jdbcType="VARCHAR" property="personnel_check" />
+    <result column="manager_check" jdbcType="VARCHAR" property="manager_check" />
+    <result column="department_connection" jdbcType="VARCHAR" property="department_connection" />
+    <result column="finance_connection" jdbcType="VARCHAR" property="finance_connection" />
+    <result column="administration_connection" jdbcType="VARCHAR" property="administration_connection" />
+    <result column="department_manager_connection" jdbcType="VARCHAR" property="department_manager_connection" />
+    <result column="manager_connection" jdbcType="VARCHAR" property="manager_connection" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeNum, name, sex, department, position, reason, enrollday, resignday, contractday, 
+    department_check, personnel_check, manager_check, department_connection, finance_connection, 
+    administration_connection, department_manager_connection, manager_connection, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp_resign
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from emp_resign
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Resign">
+    insert into emp_resign (id, employeeNum, name, 
+      sex, department, position, 
+      reason, enrollday, resignday, 
+      contractday, department_check, personnel_check, 
+      manager_check, department_connection, finance_connection, 
+      administration_connection, department_manager_connection, 
+      manager_connection, status)
+    values (#{id,jdbcType=INTEGER}, #{employeeNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{enrollday,jdbcType=DATE}, #{resignday,jdbcType=DATE}, 
+      #{contractday,jdbcType=VARCHAR}, #{department_check,jdbcType=VARCHAR}, #{personnel_check,jdbcType=VARCHAR}, 
+      #{manager_check,jdbcType=VARCHAR}, #{department_connection,jdbcType=VARCHAR}, #{finance_connection,jdbcType=VARCHAR}, 
+      #{administration_connection,jdbcType=VARCHAR}, #{department_manager_connection,jdbcType=VARCHAR}, 
+      #{manager_connection,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Resign">
+    insert into emp_resign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeNum != null">
+        employeeNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="enrollday != null">
+        enrollday,
+      </if>
+      <if test="resignday != null">
+        resignday,
+      </if>
+      <if test="contractday != null">
+        contractday,
+      </if>
+      <if test="department_check != null">
+        department_check,
+      </if>
+      <if test="personnel_check != null">
+        personnel_check,
+      </if>
+      <if test="manager_check != null">
+        manager_check,
+      </if>
+      <if test="department_connection != null">
+        department_connection,
+      </if>
+      <if test="finance_connection != null">
+        finance_connection,
+      </if>
+      <if test="administration_connection != null">
+        administration_connection,
+      </if>
+      <if test="department_manager_connection != null">
+        department_manager_connection,
+      </if>
+      <if test="manager_connection != null">
+        manager_connection,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollday != null">
+        #{enrollday,jdbcType=DATE},
+      </if>
+      <if test="resignday != null">
+        #{resignday,jdbcType=DATE},
+      </if>
+      <if test="contractday != null">
+        #{contractday,jdbcType=VARCHAR},
+      </if>
+      <if test="department_check != null">
+        #{department_check,jdbcType=VARCHAR},
+      </if>
+      <if test="personnel_check != null">
+        #{personnel_check,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_check != null">
+        #{manager_check,jdbcType=VARCHAR},
+      </if>
+      <if test="department_connection != null">
+        #{department_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="finance_connection != null">
+        #{finance_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="administration_connection != null">
+        #{administration_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="department_manager_connection != null">
+        #{department_manager_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_connection != null">
+        #{manager_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Resign">
+    update emp_resign
+    <set>
+      <if test="employeeNum != null">
+        employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollday != null">
+        enrollday = #{enrollday,jdbcType=DATE},
+      </if>
+      <if test="resignday != null">
+        resignday = #{resignday,jdbcType=DATE},
+      </if>
+      <if test="contractday != null">
+        contractday = #{contractday,jdbcType=VARCHAR},
+      </if>
+      <if test="department_check != null">
+        department_check = #{department_check,jdbcType=VARCHAR},
+      </if>
+      <if test="personnel_check != null">
+        personnel_check = #{personnel_check,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_check != null">
+        manager_check = #{manager_check,jdbcType=VARCHAR},
+      </if>
+      <if test="department_connection != null">
+        department_connection = #{department_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="finance_connection != null">
+        finance_connection = #{finance_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="administration_connection != null">
+        administration_connection = #{administration_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="department_manager_connection != null">
+        department_manager_connection = #{department_manager_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="manager_connection != null">
+        manager_connection = #{manager_connection,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Resign">
+    update emp_resign
+    set employeeNum = #{employeeNum,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      enrollday = #{enrollday,jdbcType=DATE},
+      resignday = #{resignday,jdbcType=DATE},
+      contractday = #{contractday,jdbcType=VARCHAR},
+      department_check = #{department_check,jdbcType=VARCHAR},
+      personnel_check = #{personnel_check,jdbcType=VARCHAR},
+      manager_check = #{manager_check,jdbcType=VARCHAR},
+      department_connection = #{department_connection,jdbcType=VARCHAR},
+      finance_connection = #{finance_connection,jdbcType=VARCHAR},
+      administration_connection = #{administration_connection,jdbcType=VARCHAR},
+      department_manager_connection = #{department_manager_connection,jdbcType=VARCHAR},
+      manager_connection = #{manager_connection,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

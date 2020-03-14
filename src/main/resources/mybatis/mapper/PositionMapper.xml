@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.PositionMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Position">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="vacancy_num" jdbcType="VARCHAR" property="vacancy_num" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="postnum" jdbcType="VARCHAR" property="postnum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, position, vacancy_num, requirement, postnum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hrms.entity.Position">
+    insert into position (id, position, vacancy_num, 
+      requirement, postnum)
+    values (#{id,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{vacancy_num,jdbcType=VARCHAR}, 
+      #{requirement,jdbcType=VARCHAR}, #{postnum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrms.entity.Position">
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="vacancy_num != null">
+        vacancy_num,
+      </if>
+      <if test="requirement != null">
+        requirement,
+      </if>
+      <if test="postnum != null">
+        postnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="vacancy_num != null">
+        #{vacancy_num,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null">
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="postnum != null">
+        #{postnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrms.entity.Position">
+    update position
+    <set>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="vacancy_num != null">
+        vacancy_num = #{vacancy_num,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null">
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="postnum != null">
+        postnum = #{postnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrms.entity.Position">
+    update position
+    set position = #{position,jdbcType=VARCHAR},
+      vacancy_num = #{vacancy_num,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      postnum = #{postnum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
